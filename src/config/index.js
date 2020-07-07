@@ -10,7 +10,7 @@ export const baseUrl = ''
 export const baseImgUrl = process.env.BASE_URL
 
 // 请求超时时间
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 99999
 
 // respone拦截器
 axios.interceptors.response.use(
