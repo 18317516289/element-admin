@@ -31,37 +31,37 @@ let routes = [
     name: '',
     hidden: true
   },
-  {
-    path: '/menu1',
-    component: home,
-    name: '菜單一',
-    iconCls: 'el-icon-message', //图标样式class
-    children: [
-      {
-        path: 'sub1',
-        component: sub11,
-        name: '子菜單一'
-      },
-      {
-        path: 'sub2',
-        component: sub12,
-        name: '子菜單二'
-      }
-    ]
-  },
-  {
-    path: '/menu2',
-    component: home,
-    name: '菜單二',
-    iconCls: 'el-icon-message',
-    children: [
-      {
-        path: 'sub1',
-        component: sub21,
-        name: '配置管理'
-      }
-    ]
-  },
+  // {
+  //   path: '/menu1',
+  //   component: home,
+  //   name: '菜單一',
+  //   iconCls: 'el-icon-message', //图标样式class
+  //   children: [
+  //     {
+  //       path: 'sub1',
+  //       component: sub11,
+  //       name: '子菜單一'
+  //     },
+  //     {
+  //       path: 'sub2',
+  //       component: sub12,
+  //       name: '子菜單二'
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/menu2',
+  //   component: home,
+  //   name: '菜單二',
+  //   iconCls: 'el-icon-message',
+  //   children: [
+  //     {
+  //       path: 'sub1',
+  //       component: sub21,
+  //       name: '配置管理'
+  //     }
+  //   ]
+  // },
   {
     path: '/topicinfo',
     component: home,
