@@ -6,10 +6,8 @@ import VueRouter from "vue-router"
 import login from '../page/login.vue'
 import home from '../page/home.vue'
 import notFound from '../page/404.vue'
-import sub11 from '../page/menu1/sub1.vue'
-import sub12 from '../page/menu1/sub2.vue'
 import sub22 from '../page/TopicInfo/Index.vue'
-import sub21 from '../page/menu2/sub1.vue'
+import sub23 from '../page/User/Index.vue'
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
 
@@ -72,6 +70,19 @@ let routes = [
         path: 'index',
         component: sub22,
         name: '试题库'
+      }
+    ]
+  },
+  {
+    path: '/userInfo',
+    component: home,
+    name: '用户管理',
+    iconCls: 'el-icon-message',
+    children: [
+      {
+        path: 'index',
+        component: sub23,
+        name: '用户列表'
       }
     ]
   }

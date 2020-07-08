@@ -2,7 +2,7 @@
   <div>
     <el-form :inline="true" style="margin-left:20px">
       <br />
-      <el-table-column label="请选择" prop="options">
+      <el-form-item label="题目类型：" prop="options">
         <el-select v-model="topicType" placeholder="请选择">
           <el-option
             v-for="item in options"
@@ -17,7 +17,7 @@
           @click="getList()"
           :loading="getLoading"
         >搜索</el-button>
-      </el-table-column>
+      </el-form-item>
     </el-form>
     <el-divider></el-divider>
     <el-table-column>
