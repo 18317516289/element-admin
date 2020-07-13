@@ -9,6 +9,7 @@ import notFound from '../page/404.vue'
 import sub22 from '../page/TopicInfo/Index.vue'
 import sub23 from '../page/User/Index.vue'
 import sub24 from '../page/TestQuestions/index.vue'
+import sub25 from '../page/TestQuestions/index2.vue'
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
 
@@ -96,10 +97,14 @@ let routes = [
       {
         path: 'index',
         component: sub24,
-        name: '答题操作'
+        name: '选择题'
+      },
+      {
+        path: 'index2',
+        component: sub25,
+        name: '判断题'
       }
     ]
-
   }
 ];
 var router = new VueRouter({

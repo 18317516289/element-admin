@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-left: 800px;font-size: 30px;
-    font-family: 宋体;margin-top: 20px">模拟试题--选择大题</div>
+    font-family: 宋体;margin-top: 20px">模拟试题--判断大题</div>
     <el-divider></el-divider>
     <el-table :data="tableData" style="width: 94%;margin-left:20px ;">
       <el-table-column label="题号" type="index" width="120px"></el-table-column>
@@ -13,10 +13,9 @@
 
           <div style="margin-top:18px">
             <el-checkbox-group v-model="scope.row.checked" @change="change">
-              <el-checkbox label="A">{{scope.row.selectA}}</el-checkbox>
-              <el-checkbox label="B">{{scope.row.selectB}}</el-checkbox>
-              <el-checkbox label="C">{{scope.row.selectC}}</el-checkbox>
-              <el-checkbox label="D">{{scope.row.selectD}}</el-checkbox>
+              <el-checkbox :label="true">{{scope.row.trueContext}}</el-checkbox>
+              <el-checkbox :label="false">{{scope.row.falseContext}}</el-checkbox>
+            
             </el-checkbox-group>
           </div>
         </template>
@@ -45,7 +44,9 @@ export default {
     };
   },
   methods: {
-    change(message) {},
+    change(message) {
+        debugger
+    },
 
     OnSubmit() {
       self.addLoading = true
@@ -59,7 +60,7 @@ export default {
         params: {
           take: 9999,
           skip: 0,
-          topicType:0
+          topicType:1
         }
       }).then(e=>{
         self.tableData = e.data.items
