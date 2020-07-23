@@ -12,16 +12,15 @@
           </div>
 
           <div style="margin-top:18px">
-            <el-checkbox-group v-model="scope.row.checked" @change="change">
-              <el-checkbox :label="true">{{scope.row.trueContext}}</el-checkbox>
-              <el-checkbox :label="false">{{scope.row.falseContext}}</el-checkbox>
-            
+            <el-checkbox-group v-model="scope.row.checkedBool" @change="change">
+              <el-checkbox :label="true" :disabled="trueClick">{{scope.row.trueContext}}</el-checkbox>
+              <el-checkbox :label="false" :disabled="falseClick">{{scope.row.falseContext}}</el-checkbox>
             </el-checkbox-group>
           </div>
         </template>
       </el-table-column>
     </el-table>
-    <el-form :inline="true">
+    <!-- <el-form :inline="true">
       <div style=" margin-left: 252px;margin-top:25px">
         <el-button
           type="primary"
@@ -30,7 +29,7 @@
           :loading="addLoading"
         >确认提交</el-button>
       </div>
-    </el-form>
+    </el-form> -->
   </div>
 </template>
 
@@ -39,43 +38,53 @@ export default {
   data() {
     return {
       tableData: [],
-      total:0,
-      addLoading:false
+      trueClick: false,
+      falseClick: false,
+      total: 0,
+      addLoading: false
     };
   },
+  props: ["topicType", "childMethods"],
   methods: {
     change(message) {
-        debugger
+      if (message.length == 1 && message[0] == false) {
+        this.trueClick = true;
+      }
+      if (message.length == 1 && message[0] == true) {
+        this.falseClick = true;
+      }
+      if (message.length == 0) {
+        this.falseClick = false;
+        this.trueClick = false;
+      }
+      this.childMethods.onChange2(this.tableData);
     },
-
-    OnSubmit() {
-      self.addLoading = true
-      
-         self.addLoading = false},
     getList() {
       const self = this;
-      self.$axios({
-        methods: "get",
-        url: "TopicInfo",
-        params: {
-          take: 9999,
-          skip: 0,
-          topicType:1
-        }
-      }).then(e=>{
-        self.tableData = e.data.items
-        for (const dto of self.tableData) {
-            dto.checked=[]
-        }
-        self.total = e.data.total
-      }).catch(e=>{
-     console.log("失败")
-      })
+      self
+        .$axios({
+          methods: "get",
+          url: "TopicInfo",
+          params: {
+            take: 9999,
+            skip: 0,
+            topicType: 1
+          }
+        })
+        .then(e => {
+          self.tableData = e.data.items;
+          for (const dto of self.tableData) {
+            dto.checkedBool = [];
+          }
+          self.total = e.data.total;
+        })
+        .catch(e => {
+          console.log("失败");
+        });
     }
   },
-  created(){
-this.getList()
-     
+  created() {
+    this.getList();
   }
 };
 </script>

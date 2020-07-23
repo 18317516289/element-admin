@@ -10,6 +10,11 @@ import 'font-awesome/css/font-awesome.min.css';
 import router from "./router";
 import VCharts from 'v-charts'
 import axios from 'axios'
+import  VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 Vue.use(ElementUI);
 Vue.use(Router);
 Vue.use(VCharts);

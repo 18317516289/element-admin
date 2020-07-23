@@ -10,6 +10,7 @@ import sub22 from '../page/TopicInfo/Index.vue'
 import sub23 from '../page/User/Index.vue'
 import sub24 from '../page/TestQuestions/index.vue'
 import sub25 from '../page/TestQuestions/index2.vue'
+import sub26 from '../page/TestQuestions/allIndex.vue'
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
 
@@ -94,15 +95,20 @@ let routes = [
     name: '答题卷',
     iconCls: 'el-icon-message',
     children: [
+      // {
+      //   path: 'index',
+      //   component: sub24,
+      //   name: '选择题'
+      // },
+      // {
+      //   path: 'index2',
+      //   component: sub25,
+      //   name: '判断题'
+      // },
       {
-        path: 'index',
-        component: sub24,
-        name: '选择题'
-      },
-      {
-        path: 'index2',
-        component: sub25,
-        name: '判断题'
+        path: 'indexall',
+        component: sub26,
+        name: '题库'
       }
     ]
   }

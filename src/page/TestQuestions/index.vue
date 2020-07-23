@@ -12,7 +12,7 @@
           </div>
 
           <div style="margin-top:18px">
-            <el-checkbox-group v-model="scope.row.checked" @change="change">
+            <el-checkbox-group v-model="scope.row.checkedSelect" @change="change">
               <el-checkbox label="A">{{scope.row.selectA}}</el-checkbox>
               <el-checkbox label="B">{{scope.row.selectB}}</el-checkbox>
               <el-checkbox label="C">{{scope.row.selectC}}</el-checkbox>
@@ -22,16 +22,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-form :inline="true">
-      <div style=" margin-left: 252px;margin-top:25px">
-        <el-button
-          type="primary"
-          style="margin-left:5px"
-          @click="OnSubmit()"
-          :loading="addLoading"
-        >确认提交</el-button>
-      </div>
-    </el-form>
   </div>
 </template>
 
@@ -40,41 +30,42 @@ export default {
   data() {
     return {
       tableData: [],
-      total:0,
-      addLoading:false
+      total: 0,
+      addLoading: false
     };
   },
+  props: ["topicType", "childMethods"],
   methods: {
-    change(message) {},
-
-    OnSubmit() {
-      self.addLoading = true
-      
-         self.addLoading = false},
+    change(message) {
+      this.childMethods.onChange1(this.tableData);
+    },
     getList() {
       const self = this;
-      self.$axios({
-        methods: "get",
-        url: "TopicInfo",
-        params: {
-          take: 9999,
-          skip: 0,
-          topicType:0
-        }
-      }).then(e=>{
-        self.tableData = e.data.items
-        for (const dto of self.tableData) {
-            dto.checked=[]
-        }
-        self.total = e.data.total
-      }).catch(e=>{
-     console.log("失败")
-      })
+      self
+        .$axios({
+          methods: "get",
+          url: "TopicInfo",
+          params: {
+            take: 9999,
+            skip: 0,
+            topicType: self.topicType
+          }
+        })
+        .then(e => {
+          self.tableData = e.data.items;
+          for (const dto of self.tableData) {
+            dto.checkedSelect = [];
+          }
+          self.total = e.data.total;
+        })
+        .catch(e => {
+          console.log("失败");
+        });
     }
   },
-  created(){
-this.getList()
-     
+  created() {
+    debugger;
+    this.getList();
   }
 };
 </script>

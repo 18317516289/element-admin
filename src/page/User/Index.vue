@@ -44,6 +44,7 @@
         </template>
       </el-table-column>
     </el-table>
+
     <div>
       <edit ref="edit-action" @submit="getList()"></edit>
       <add ref="add-action" @submit="getList()"></add>
@@ -54,10 +55,14 @@
 <script>
 import add from "./components/add-user";
 import edit from "./components/edit-user";
+
 export default {
-  components: { add ,edit},
+  components: { add, edit },
   data() {
     return {
+      content: null,
+
+      editorOption: {},
       tableData: [],
       total: 0,
       query: {
@@ -122,7 +127,7 @@ export default {
         });
     },
     onAdd() {
-        const self = this
+      const self = this;
       self.$refs["add-action"].show();
     },
     onDelete(id) {
@@ -135,9 +140,9 @@ export default {
         }
       });
     },
-    onUpdate(row){
-      const self = this
-     self.$refs["edit-action"].show(row);
+    onUpdate(row) {
+      const self = this;
+      self.$refs["edit-action"].show(row);
     }
   },
   filters: {

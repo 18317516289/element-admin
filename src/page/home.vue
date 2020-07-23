@@ -89,7 +89,12 @@ export default {
       })
         .then(() => {
           sessionStorage.removeItem("user");
+          this.$axios({
+           methods:"get",
+           url:"User/LoginOut"
+          }).then(e=>{
           _this.$router.push("/login");
+          })
         })
         .catch(() => {});
     },
