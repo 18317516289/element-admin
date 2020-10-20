@@ -8,6 +8,7 @@ import home from '../page/home.vue'
 import notFound from '../page/404.vue'
 import sub11 from '../page/menu1/sub1.vue'
 import sub12 from '../page/menu1/sub2.vue'
+import sub22 from '../page/TopicInfo/Index.vue'
 import sub21 from '../page/menu2/sub1.vue'
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
@@ -58,6 +59,19 @@ let routes = [
         path: 'sub1',
         component: sub21,
         name: '配置管理'
+      }
+    ]
+  },
+  {
+    path: '/topicinfo',
+    component: home,
+    name: '试题列表',
+    iconCls: 'el-icon-message',
+    children: [
+      {
+        path: 'index',
+        component: sub22,
+        name: '试题库'
       }
     ]
   }

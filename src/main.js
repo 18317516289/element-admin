@@ -9,11 +9,13 @@ import App from './App.vue';
 import 'font-awesome/css/font-awesome.min.css';
 import router from "./router";
 import VCharts from 'v-charts'
-
+import axios from 'axios'
 Vue.use(ElementUI);
 Vue.use(Router);
 Vue.use(VCharts);
-
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api'
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 Vue.config.productionTip = false
  /**
   * 判断当前是否登录，未登录不能跳转路由
