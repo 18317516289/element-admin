@@ -31,34 +31,83 @@ let routes = [
     name: '',
     hidden: true
   },
+  // {
+  //   path: '/menu1',
+  //   component: home,
+  //   name: '菜單一',
+  //   iconCls: 'el-icon-message', //图标样式class
+  //   children: [
+  //     {
+  //       path: 'sub1',
+  //       component: sub11,
+  //       name: '子菜單一'
+  //     },
+  //     {
+  //       path: 'sub2',
+  //       component: sub12,
+  //       name: '子菜單二'
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/menu2',
+  //   component: home,
+  //   name: '菜單二',
+  //   iconCls: 'el-icon-message',
+  //   children: [
+  //     {
+  //       path: 'sub1',
+  //       component: sub21,
+  //       name: '配置管理'
+  //     }
+  //   ]
+  // },
   {
-    path: '/menu1',
+    path: '/topicinfo',
     component: home,
-    name: '菜單一',
-    iconCls: 'el-icon-message', //图标样式class
+    name: '试题列表',
+    iconCls: 'el-icon-message',
     children: [
       {
-        path: 'sub1',
-        component: sub11,
-        name: '子菜單一'
-      },
-      {
-        path: 'sub2',
-        component: sub12,
-        name: '子菜單二'
+        path: 'index',
+        component: sub22,
+        name: '试题库'
       }
     ]
   },
   {
-    path: '/menu2',
+    path: '/userInfo',
     component: home,
-    name: '菜單二',
+    name: '用户管理',
     iconCls: 'el-icon-message',
     children: [
       {
-        path: 'sub1',
-        component: sub21,
-        name: '配置管理'
+        path: 'index',
+        component: sub23,
+        name: '用户列表'
+      }
+    ]
+  },
+  {
+    path: '/testQuestions',
+    component: home,
+    name: '答题卷',
+    iconCls: 'el-icon-message',
+    children: [
+      // {
+      //   path: 'index',
+      //   component: sub24,
+      //   name: '选择题'
+      // },
+      // {
+      //   path: 'index2',
+      //   component: sub25,
+      //   name: '判断题'
+      // },
+      {
+        path: 'indexall',
+        component: sub26,
+        name: '题库'
       }
     ]
   },

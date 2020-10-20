@@ -39,14 +39,14 @@
      </aside>
      <section class="content-container">
        <div class="grid-content bg-purple-light">
-         <el-row class="nav-tabs">
+         <!-- <el-row class="nav-tabs">
           <el-col :span="24">
             <div @click="changeRouter(index)" v-for="(option, index) in arry" class="cus-tab-box" :class="activepath==option.path?'activeTab':''">
               <span>{{option.name}}</span>
               <span @click.stop="arry.length!=1 && removeTab(index)"><i class="fa fa-times close-icon" aria-hidden="true"></i></span>
             </div>
           </el-col>
-         </el-row>
+         </el-row> -->
          <el-col :span="24" class="content-wrapper">
            <transition name="fade" mode="out-in">
              <router-view></router-view>
@@ -89,7 +89,12 @@ export default {
       })
         .then(() => {
           sessionStorage.removeItem("user");
+          this.$axios({
+           methods:"get",
+           url:"User/LoginOut"
+          }).then(e=>{
           _this.$router.push("/login");
+          })
         })
         .catch(() => {});
     },

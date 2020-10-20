@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       logining: false,
+      logindto: {},
       ruleForm2: {
         account: "",
         checkPass: ""
@@ -59,9 +60,10 @@ export default {
   },
   created() {
     this.ruleForm2.checkPass = "";
-    if (localStorage.getItem('userName')) {  // 记住密码操作
-      this.ruleForm2.account = localStorage.getItem('userName');
-      this.ruleForm2.checkPass = localStorage.getItem('password');
+    if (localStorage.getItem("userName")) {
+      // 记住密码操作
+      this.ruleForm2.account = localStorage.getItem("userName");
+      this.ruleForm2.checkPass = localStorage.getItem("password");
     }
   },
   methods: {
@@ -70,15 +72,32 @@ export default {
         if (valid) {
           this.logining = true;
           // 模拟登录
-          setTimeout(() => {
-            const params = {
-              userName: this.ruleForm2.account,
-              password: this.ruleForm2.checkPass
-            };
-            sessionStorage.setItem("user", JSON.stringify(params)); // session存储用户信息
-            this.logining = false;
-            this.$router.push({ path: "/menu1/sub1" });  // 去主页
-          }, 1000);
+          this.logindto.userName = this.ruleForm2.account;
+          this.logindto.password = this.ruleForm2.checkPass;
+          this.$axios({
+            methods: "get",
+            url: "User/Login",
+            params: {
+      ...this.logindto
+            }
+          })
+            .then(e => {
+              if(e.data.success ==true){
+              console.log(this.logindto)
+              sessionStorage.setItem("user", JSON.stringify(this.logindto)); // session存储用户信息
+              this.logining = false;
+              this.$router.push({ path: "/userInfo/index" }); // 去主页
+            }else{
+              this.logining = false;
+              this.$message.error(e.data.errorMessage);
+            }}
+            )
+            .catch(e => {
+              debugger;
+              this.logining = false;
+              this.$message.error(e.data.errorMessage);
+            });
+
           // const params = {
           //   userName: this.ruleForm2.account,
           //   password: this.ruleForm2.checkPass
